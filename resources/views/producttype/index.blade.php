@@ -11,6 +11,13 @@
             <tr>
                 <td>{{ $type->id }}</td>
                 <td>{{ $type->name }}</td>
+                <td>
+                    <form action="producttypes/{{$type->id}}" method="post">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" class="btn btn-danger" value="Borrar">
+                    </form>
+                </td>
             </tr>
             @endforeach
             </table>

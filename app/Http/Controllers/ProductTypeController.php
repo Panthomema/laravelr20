@@ -15,12 +15,11 @@ class ProductTypeController extends Controller
     public function index()
     {
         $producttypes = ProductType::all();
-        
-        //dd($producttypes);
-        //return $producttypes;
+        // dd($producttypes);
+        // return $producttypes;
         return view('producttype.index', ['producttypes' => $producttypes]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +29,7 @@ class ProductTypeController extends Controller
     {
         echo "en create";
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +40,7 @@ class ProductTypeController extends Controller
     {
         //
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -84,6 +83,6 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "borrando";
     }
 }

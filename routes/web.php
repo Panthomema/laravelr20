@@ -38,33 +38,36 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//-----------------------------------------------
+
+//---------------------------------------
 //Rutas de ProductType
 //Un CRUD necesita 7 rutas
-//Puedo escribir todas o usar una ruta 'resource'
+//Puedo escribir todas o usar un ruta "resource"
 
-//Listado: método index
+//listado: método index
 Route::get('/producttypes', [ProductTypeController::class, 'index']);
-
-//Formulario de alta: método create
+//formulario de alta: create
 Route::get('/producttypes/create', [ProductTypeController::class, 'create']);
-
-//Guardado de formulario de alta: método store
+//guardar el formulario de alta: store
 Route::post('/producttypes', [ProductTypeController::class, 'store']);
-
-//Detalle: método show
+//detalle de uno: método show
 Route::get('/producttypes/{id}', [ProductTypeController::class, 'show']);
-
-//Formulario de edición: método edit
+//edición de uno: método edit
 Route::get('/producttypes/{id}/edit', [ProductTypeController::class, 'edit']);
-
-//Guardado de formulario de edición: método update
+//guardar formulario de edición: método update
 Route::put('/producttypes/{id}', [ProductTypeController::class, 'update']);
-
-//Borrado: método destroy
+//borrar uno: método destroy
 Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
 
-
-//Ruta tipo resource (equivale a las 7 anteriores)
+//ruta equivalente a las 7 anteriores
 //Route::resource('/producttypes', ProductTypeController::class);
+// Route::resource('/producttypes', ProductTypeController::class)->only(['index', 'show', 'destroy']);
+// Route::resource('/producttypes', ProductTypeController::class)->except(['index', 'show', 'destroy']);
+
+
+
+
+
+
+
 

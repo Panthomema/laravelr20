@@ -13,6 +13,24 @@
 - Instalar UI bootstrap
 https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutorialexample.html
 
+- Migraciones:
+  - Crear la migración:
+    php artisan make:migration create_product_types_table
+  - Ejecutar migraciones:
+    php artisan migrate //ejecuta las pendientes
+    php artisan migrate:rollback //deshace el último lote
+    php artisan:refresh //rollback y migrate de todo
+- Seeders
+  - Crean registros iniciales o de pruebas
+    php artisan make:seeder ProductTypeSeeder
+  - Se ejecuta un seeder así:
+    php artisan db:seed --class=ProductTypeSeeder
+    php artisan db:seed //siembre el DatabaseSeeder
+    php artisan:refresh --seed //rollback y migrate de todo + seed de DatabaseSeeder
+
+  -
+- Modelo
+  - Necesitamos atributo $fillable para crear objetos desde un array
 
 - Para gestionar una tabla debemos:
   - Crear una migración (opcional) + por nuetsra cuenta

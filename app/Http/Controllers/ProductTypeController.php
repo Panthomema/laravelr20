@@ -27,7 +27,9 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        echo "en create";
+        // echo "en create";
+
+        return view('producttype.create');
     }
     
     /**
@@ -38,7 +40,19 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return "en store";
+
+        // método 1 (más rudimentario)
+        $producttype = new ProductType;
+        $producttype->name = $request->name; // (para un solo campo)
+        // $producttype->fill($request->all()); (para muchos campos)
+        $producttype->save();
+
+        // método 2 más rápido. Requiere $fillable en el modelo
+        // $producttype = ProductType::create($request->all());
+
+        return redirect('/producttypes');
+
     }
     
     /**
@@ -49,7 +63,9 @@ class ProductTypeController extends Controller
      */
     public function show($id)
     {
-        echo "en show($id)";
+        //buscar
+        $producttype = Producttype::find($id);
+        return view('producttype.show', ['producttype' => $producttype]);
     }
 
     /**
@@ -60,7 +76,8 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producttype = Producttype::find($id);
+        return view('producttype.edit', ['producttype' => $producttype]);
     }
 
     /**
@@ -72,7 +89,16 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return "actualizar $id";
+
+        // buscar
+        $producttype = ProductType::find($id);
+        // modificar
+        $producttype->name = $request->name;
+        // grabar en bbdd
+        $producttype->save();
+        // redirigir
+        return redirect('/producttypes');
     }
 
     /**
@@ -81,8 +107,17 @@ class ProductTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        return "borrando";
+        // return $request->all();
+
+        $producttype = ProductType::find($id);
+        $producttype->delete(); //método 1
+
+        // ProductType::destroy([$id]); //método 2
+
+        // return redirect('/producttypes'); //seleccionamos la ruta que queremos
+
+        return back(); // nos devuelve a la dirección anterior
     }
 }

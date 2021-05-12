@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\ProductTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,34 @@ Route::get('/prueba/potencias2', [PruebaController::class, 'potencias2']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//-----------------------------------------------
+//Rutas de ProductType
+//Un CRUD necesita 7 rutas
+//Puedo escribir todas o usar una ruta 'resource'
+
+//Listado: método index
+Route::get('/producttypes', [ProductTypeController::class, 'index']);
+
+//Formulario de alta: método create
+Route::get('/producttypes/create', [ProductTypeController::class, 'create']);
+
+//Guardado de formulario de alta: método store
+Route::post('/producttypes', [ProductTypeController::class, 'store']);
+
+//Detalle: método show
+Route::get('/producttypes/{id}', [ProductTypeController::class, 'show']);
+
+//Formulario de edición: método edit
+Route::get('/producttypes/{id}/edit', [ProductTypeController::class, 'edit']);
+
+//Guardado de formulario de edición: método update
+Route::put('/producttypes/{id}', [ProductTypeController::class, 'update']);
+
+//Borrado: método destroy
+Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
+
+
+//Ruta tipo resource (equivale a las 7 anteriores)
+//Route::resource('/producttypes', ProductTypeController::class);
+

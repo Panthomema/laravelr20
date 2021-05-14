@@ -1,9 +1,10 @@
 # Modelos/Tablas que vamos a usar
 - ProductTypes(id, name)
-- Product(id, name, price, product_type_id, description)
-- 
+- Product(id, name, price, product_type_id*, description)
+  product_type_id: usar select en los formularios
+  usar relaciones para mostrar nombre en vez de id en el index
 - Task(id, name);
-- Job(id, date, user_id);
+- Job(id, date, user_id*);
 
 # Repaso 01
 - Día del examen MVC
@@ -45,3 +46,37 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
   - Crear una política (para autorización)
     php artisan make:policy ProductTypePolicy --model=ProductType
 
+
+ ## TAREA PARA CASA
+ - Crear migraciones, modelo, seeder y controlador con método index de las tablas indicadas arriba del todo. La vista index la tenéis disponible en este repositorio.
+
+
+
+
+
+# Repaso 03. 12/mayo
+
+  - Revisar index. 
+    extend layout en blade
+  - Delete: form para falsear DELETE (destroy)
+  - show
+  - edit/update
+  - create/store
+
+  - (7)Rutas resource
+       REST
+      /producttypes  index, store(post)
+      /producttypes/{id}  show, update, delete
+      /producttypes/create
+      /producttypes/{id}/edit
+
+# PARA CASA.
+  - CRUD de las 3 tablas que faltan.
+    - Modelo (php artisan make:model Example -mcrs)
+    - Rutas: resource
+
+# PROXIMO DIA REPASO 04
+  - Validación
+  - Select en formularios
+  - Relaciones BelongsTo, HasMany
+  - Políticas ¿?

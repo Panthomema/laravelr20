@@ -14,8 +14,8 @@ class ProductTypeSeeder extends Seeder
      */
     public function run()
     {
-        ProductType::create(['id' => 1, 'name' => 'refrescos']);
-        ProductType::create(['id' => 2, 'name' => 'cervezas']);
-        ProductType::create(['id' => 3, 'name' => 'combinados']);
+        ProductType::create(['id' => 1, 'name' => 'Refrescos']);
+        ProductType::create(['id' => 2, 'name' => 'Cervezas']);
+        ProductType::create(['id' => 3, 'name' => 'Combinados']);
     }
 }

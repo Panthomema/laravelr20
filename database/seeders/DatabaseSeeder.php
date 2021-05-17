@@ -15,14 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-<<<<<<< HEAD
-            //UserSeeder::class,
-            ProductTypeSeeder::class,
-        ]);
-=======
             UserSeeder::class,
             ProductTypeSeeder::class,
+            ProductSeeder::class,
+            TaskSeeder::class,
         ]);        
->>>>>>> 8893f5f1a3192a96da97506565b6c406931af84e
     }
 }

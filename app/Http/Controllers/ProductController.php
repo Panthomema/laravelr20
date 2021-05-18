@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         //Validación
         $rules = [
-            'name' => 'required|string|unique:products|max:50',
+            'name' => 'required|string||max:50|unique:products, name',
             'price' => 'required|double',
         ];
 

@@ -11,16 +11,16 @@
             </ul>
         </div>
 
-        <div class="col-md-8">
-            <h2>Productos pertenecientes</h2>
-            <ul>
-            @foreach($producttype->products as $product)
-                <li>
-                    {{ $product->name }}
-                </li>
-            @endforeach
-            </ul>
-        </div>
+        
     </div>
+
+    <div class="col-md-8">
+        @forelse($producttype->products as $product)
+        <li>{{ $product->name }}</li>
+        @empty
+        <li>No hay ningún producto asociado</li>
+        @endforelse
+    </div>
+  </div>
 </div>
 @endsection

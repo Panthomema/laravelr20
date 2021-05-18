@@ -4,7 +4,7 @@
   product_type_id: usar select en los formularios
   usar relaciones para mostrar nombre en vez de id en el index
 - Task(id, name);
-- Job(id, date, user_id*);
+- Job(id, date, user_id*); tipo date
 
 # Repaso 01
 - Día del examen MVC
@@ -75,8 +75,35 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
     - Modelo (php artisan make:model Example -mcrs)
     - Rutas: resource
 
-# PROXIMO DIA REPASO 04
+# REPASO 04
   - Validación
   - Select en formularios
   - Relaciones BelongsTo, HasMany
-  - Políticas ¿?
+  - Middleware Auth
+
+# PROXIMO DIA EXAMEN. DEJO LA SIGUIENTE TAREA:
+  - Para preparar el examen he creado dos modelos: Fiesta y Ticket
+  - Están en la rama master
+  - Las migraciones ya están. Debéis usarlas tal cual.
+  - Realizar el CRUD completo de ambas tablas:
+    - El usuario que crea una fiesta se convierte en su responsable (\Auth::id()). Es decir, no hay ningún select o input para determinar quien es el responsable, será el usuario que lo cree.
+    - Un usuario puede crear tickets para los usuarios que quiera.
+    - Los tickets no se editan (sin edit ni update), se crean o se borran.
+
+  - Realizar validación en create y update:
+    fiesta.create
+    fiesta.update
+    ticket.create
+
+
+  - Realizar las relaciones con user y fiesta
+  - Realizar las relaciones entre user y ticket
+  - Realizar las relaciones entre fiesta y ticket
+  - Ambos controladores deben estar limitados a usuarios autenticados, salvo la lista de fiestas que es visible por autenticados e invitados.
+  - El show de la fiesta muestra la lista de usuarios que han sacado ticket
+  - El show de user debe mostrar la lista de fiestas en las que ha sacado ticket.
+
+# PENDIENTE PARA API
+
+  - Sesiones
+  - Políticas

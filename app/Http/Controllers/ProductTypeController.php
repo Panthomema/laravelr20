@@ -8,6 +8,11 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 class ProductTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('guest');
+    }
     /**
      * Display a listing of the resource.
      *

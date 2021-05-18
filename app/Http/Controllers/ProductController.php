@@ -8,6 +8,11 @@ use App\Models\ProductType;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //$this->middleware('guest'); Sólo para invitados
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,9 +43,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       $product = Product::create($request->all());
+        //Validación
+        $rules = [
+            'name' => 'required|string|unique:products|max:50',
+            'price' => 'required|double',
+        ];
 
-       return redirect('/products');
+        $this->validate($request, $rules);
+
+        Product::create($request->all());
+
+        return redirect('/products');
     }
 
     /**
@@ -77,12 +90,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Búsqueda
         $product = Product::find($id);
+
+        //Validación
+        $rules = [
+            'name' => 'required|string|max:50|unique:products,name,' . $id,
+            'price' => 'required|numeric',
+        ];
+
+        $this->validate($request, $rules);
+
+        //Paso de datos
         $product->name = $request->name;
         $product->price = $request->price;
         $product->product_type_id = $request->product_type_id;
         $product->description = $request->description;
         
+        //Inserción
         $product->save();
 
         return redirect('/products');

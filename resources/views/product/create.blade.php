@@ -11,28 +11,37 @@
 
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    <input class="form-control" type="text" name="name" value="">
+                    <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="">Precio</label>
-                    <input class="form-control" type="text" name="price" value="">
+                    <input class="form-control" type="text" name="price" value="{{ old('price') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="">Tipo</label>
                     <select class="form-control" name="product_type_id">
                         @foreach($types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        <option value="{{ $type->id }}"
+                            @if(old('product_type_id') == $type->id)
+                            selected
+                            @endif
+                            >
+                            {{ $type->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <input class="form-control" type="text" name="description" value="">
+                    <input class="form-control" type="text" name="description" value="{{ old('description') }}">
                 </div>
 
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <input class="form-control" type="submit" value="Guardar">

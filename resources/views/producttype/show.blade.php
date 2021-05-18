@@ -10,6 +10,17 @@
                 <li>{{$producttype->name}}</li>
             </ul>
         </div>
+
+        <div class="col-md-8">
+            <h2>Productos pertenecientes</h2>
+            <ul>
+            @foreach($producttype->products as $product)
+                <li>
+                    {{ $product->name }}
+                </li>
+            @endforeach
+            </ul>
+        </div>
     </div>
 </div>
 @endsection

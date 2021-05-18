@@ -39,7 +39,12 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        // return "en store";
+        // Validación
+        $rules = [
+            'name' => 'required|string|unique:product_types|max:50'
+        ];
+
+        $this->validate($request, $rules);
 
         // método 1 (más rudimentario)
         $producttype = new ProductType;
@@ -92,6 +97,14 @@ class ProductTypeController extends Controller
 
         // buscar
         $producttype = ProductType::find($id);
+
+        // Validación
+        $rules = [
+            'name' => 'required|string|max:50|unique:product_types,name,' . $id
+        ];
+
+        $this->validate($request, $rules);
+
         // modificar
         $producttype->name = $request->name;
         // grabar en bbdd

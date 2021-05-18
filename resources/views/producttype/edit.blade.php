@@ -15,6 +15,10 @@
                     <input class="form-control" type="text" name="name" value="{{$producttype->name}}">
                 </div>
 
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                
                 <div class="form-group">
                     <input class="form-control" type="submit" value="Guardar">
                 </div>

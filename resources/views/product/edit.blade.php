@@ -25,10 +25,13 @@
                     <select class="form-control" name="product_type_id">
                         @foreach($types as $type)
                         <option value="{{ $type->id }}"
-                            @if($type->id == $product->product_type_id)
+                            @if(old('product_type_id') == $type->id)
+                            selected
+                            @elseif($type->id == $product->product_type_id)
                             selected
                             @endif
-                            >{{ $type->name }}</option>
+                            >
+                            {{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,6 +41,13 @@
                     <input class="form-control" type="text" name="description" value="{{$product->description}}">
                 </div>
 
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                @error('price')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group">
                     <input class="form-control" type="submit" value="Guardar">

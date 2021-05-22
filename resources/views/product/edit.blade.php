@@ -12,12 +12,22 @@
 
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    <input class="form-control" type="text" name="name" value="{{$product->name}}">
+                    <input class="form-control" type="text" name="name" 
+                    @if(old('name') == "")
+                    value="{{ $product->name }}">
+                    @else
+                    value="{{ old('name') }}">
+                    @endif                   
                 </div>
 
                 <div class="form-group">
                     <label for="">Precio</label>
-                    <input class="form-control" type="text" name="price" value="{{$product->price}}">
+                    <input class="form-control" type="text" name="price" 
+                    @if(old('price') == "")
+                    value="{{ $product->price }}">
+                    @else
+                    value="{{ old('price') }}">
+                    @endif      
                 </div>
 
                 <div class="form-group">
@@ -31,14 +41,20 @@
                             selected
                             @endif
                             >
-                            {{ $type->name }}</option>
+                            {{ $type->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <input class="form-control" type="text" name="description" value="{{$product->description}}">
+                    <input class="form-control" type="text" name="description" 
+                    @if(old('description') == "")
+                    value="{{ $product->description }}">
+                    @else
+                    value="{{ old('description') }}">
+                    @endif
                 </div>
 
                 @error('name')

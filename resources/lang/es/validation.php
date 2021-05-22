@@ -150,6 +150,7 @@ return [
         'name' => 'nombre',
         'price' => 'precio',
         'description' => 'descripción',
+        'date' => 'fecha',
     ],
 
 ];

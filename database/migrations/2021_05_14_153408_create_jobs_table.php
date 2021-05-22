@@ -15,6 +15,8 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

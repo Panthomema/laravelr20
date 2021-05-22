@@ -43,6 +43,10 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                @error('price')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
                 <div class="form-group">
                     <input class="form-control" type="submit" value="Guardar">
                 </div>

@@ -45,8 +45,8 @@ class ProductController extends Controller
     {
         //Validación
         $rules = [
-            'name' => 'required|string||max:50|unique:products, name',
-            'price' => 'required|double',
+            'name' => 'required|string|max:50|unique:products,name',
+            'price' => 'required|numeric',
         ];
 
         $this->validate($request, $rules);

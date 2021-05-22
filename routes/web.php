@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProductController;
-<<<<<<< HEAD
 use App\Http\Controllers\TaskController;
-=======
->>>>>>> 57a61728498ed607d25a0fcbf765b0a36e0d9f96
+use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,19 +67,17 @@ Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
 // Route::resource('/producttypes', ProductTypeController::class)->only(['index', 'show', 'destroy']);
 // Route::resource('/producttypes', ProductTypeController::class)->except(['index', 'show', 'destroy']);
 
-<<<<<<< HEAD
 //---------------------------------------
 //Rutas de Product (resource)
-=======
->>>>>>> 57a61728498ed607d25a0fcbf765b0a36e0d9f96
 Route::resource('/products', ProductController::class);
 
 //---------------------------------------
 //Rutas de Task (resource)
 Route::resource('/tasks', TaskController::class);
 
-
-
+//---------------------------------------
+//Rutas de Job (resource)
+Route::resource('/jobs', JobController::class);
 
 
 

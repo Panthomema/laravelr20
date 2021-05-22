@@ -36,6 +36,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'name' => 'required|string|max:40|unique:tasks,name',
+        ];
+        $this->validate($request, $rules);
+
         $task = Task::create($request->all());
         return redirect('/tasks');
     }
@@ -73,6 +78,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'name' => 'required|string|max:40|unique:tasks,name',
+        ];
+        $this->validate($request, $rules);
+        
         $task = Task::find($id);
         $task->name = $request->name;
         $task->save();

@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\Fiesta;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +21,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = Ticket::all();
+        return view('ticket.index', ['tickets' => $tickets]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +31,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $fiestas = Fiesta::all();
+        $users = User::all();
+        return view('ticket.create' , ['fiestas' => $fiestas, 'users' => $users]);
     }
 
     /**
@@ -34,8 +43,9 @@ class TicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        Ticket::create($request->all());
+        return redirect('/ticket');
     }
 
     /**
@@ -44,32 +54,10 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ticket $ticket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ticket $ticket)
-    {
-        //
+        $ticket = Ticket::find($id);
+        return view('ticket.show', ['ticket' => $ticket]);
     }
 
     /**
@@ -78,8 +66,10 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket)
+    public function destroy($id)
     {
-        //
+        Ticket::destroy([$id]);
+
+        return back();
     }
 }

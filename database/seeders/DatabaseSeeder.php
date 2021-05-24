@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Fiesta;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             TaskSeeder::class,
             JobSeeder::class,
+            FiestaSeeder::class,
+            TicketSeeder::class,
         ]);        
     }
 }

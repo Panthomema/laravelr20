@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+    protected $fillable = ['id', 'fiesta_id', 'user_id'];
+
+    public function fiesta()
+    {
+        return $this->belongsTo(Fiesta::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

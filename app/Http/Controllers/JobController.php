@@ -129,10 +129,8 @@ class JobController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        // Buscamos mediante el id
-        $job = Job::find($id);
         //Usamos método destroy
-        job::destroy([$id]);
+        Job::destroy([$id]);
 
         //Volvemos a la dirección anterior
         return back();

@@ -15,6 +15,7 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('fiesta_id')->constrained();//fiesta a la que pertenece el ticket
             $table->foreignId('user_id')->constrained();//socio que se apunta a la fiesta
             $table->timestamps();
         });

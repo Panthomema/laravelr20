@@ -151,6 +151,7 @@ return [
         'price' => 'precio',
         'description' => 'descripción',
         'date' => 'fecha',
+        'max_people' => 'límite de aforo',
     ],
 
 ];

@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\FiestaController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +81,11 @@ Route::resource('/tasks', TaskController::class);
 //Rutas de Job (resource)
 Route::resource('/jobs', JobController::class);
 
+//---------------------------------------
+//Rutas de Fiesta (resource)
+Route::resource('/fiestas', FiestaController::class);
 
+//---------------------------------------
+//Rutas de Ticket (resource)
+Route::resource('/tickets', TicketController::class)->except(['store', 'update']);
 

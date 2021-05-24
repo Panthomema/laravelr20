@@ -121,7 +121,6 @@ class ProductController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $product = Product::find($id);
         Product::destroy([$id]);
 
         return back();

@@ -41,7 +41,7 @@ class TaskController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $task = Task::create($request->all());
+        Task::create($request->all());
         return redirect('/tasks');
     }
 

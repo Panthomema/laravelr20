@@ -107,3 +107,6 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
 
   - Sesiones
   - Políticas
+  - API. 
+    - Rutas específicas
+    - CRUD de Product en API probado con Postman

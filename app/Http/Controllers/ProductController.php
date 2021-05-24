@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
@@ -72,7 +73,43 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        session(['lastProduct' => $product]);
+        
+        //historial...............................................
+        //lista de productos visitados en orden: 'historial'
+        if (Session::has('historial')) {
+            $historial = Session::get('historial');
+        } else {
+            $historial = array();
+        }
+        $historial[] = $product;
+        Session::put('historial', $historial);
+        //FIN historial...............................................
+        
+        //historial CON CONTADOR ......................................
+        //lista de productos visitados en orden: 'historial'
+        if (Session::has('historial2')) {
+            $historial2 = Session::get('historial2');
+        } else {
+            $historial2 = array();
+        }
+
+        if (isset($historial2[$product->id])) {
+            $historial2[$product->id]->contador++;
+        } else {
+            $product->contador=1;
+            $historial2[$product->id] = $product;
+        }
+
+        // $product->contador = 1;
+        // $product->contador++;
+        // $historial2[] = $product;
+        Session::put('historial2', $historial2);
+        //FIN historial CON CONTADOR...............................................
+
+
+        // Session::put('lastProduct', $product);
+        return $product;
     }
 
     /**
@@ -107,5 +144,12 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function forgetLastProduct()
+    {
+        // Session::flush();
+        Session::forget('lastProduct');
+        return back();
     }
 }

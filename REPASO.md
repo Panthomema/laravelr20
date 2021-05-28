@@ -107,3 +107,15 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
 
   - Sesiones
   - Políticas
+  - API. 
+    - Rutas específicas
+    - CRUD de Product en API probado con Postman
+
+# REPASO 06
+- Sesiones. 
+  - Ver ProductController: show y en vista de index.
+- Para casa:
+  - Añadir 3 botones en cada elemento de historial2:
+     + Aumenta el contador
+     - Disminuye el contador (si llega a 0 se debe borrar )
+     X Eliminar un elemento cel array hisotorial2 (con unset($id))

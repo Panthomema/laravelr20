@@ -16,13 +16,14 @@
                 Todavía no has visitado ninguno
             @endif
             <br>
+            <br>
 
             <table class="table table-striped">
             @foreach ($products as $product)
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->price }}</td>
+                <td>{{ number_format($product->price, 2) }}</td>
                 <td>{{ $product->product_type->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>
@@ -57,7 +58,7 @@
             <h3>Historial de productos visitados(veces)</h3>
             @if(Session::has('countedHistory'))
                 @foreach(Session::get('countedHistory') as $product)
-                    <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a></li>
+                    <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a> ( {{ $product->counter }})</li>
                 @endforeach
             @else
                 Aún no se ha visitado ninguno.

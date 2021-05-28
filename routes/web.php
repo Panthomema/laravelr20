@@ -71,7 +71,10 @@ Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
 
 //---------------------------------------
 //Rutas de Product (resource)
+//Métodos sesiones
+Route::get('/products/forgetLastProduct', [ProductController::class, 'forgetLastProduct']);
 Route::resource('/products', ProductController::class);
+
 
 //---------------------------------------
 //Rutas de Task (resource)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductType;
+use Session;
 
 class ProductController extends Controller
 {
@@ -65,6 +66,35 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        session(['lastProduct' => $product]);
+        //Session::put('lastProduct', $product);
+        // Lista de productos visitados: 'history'
+        if (Session::has('history')) {
+            $history = Session::get('history');
+        } else {
+            $history = array();
+        }
+        
+        $history[] = $product;
+        Session::put('history', $history);
+        
+        // Lista de productos con contador: 'countedHistory'
+        if (Session::has('countedHistory')) {
+            $countedHistory = Session::get('countedHistory');
+        } else {
+            $countedHistory = array();
+        }
+        
+        if (isset($countedHistory[$product->id])) {
+            $countedHistory[$product->id]->counter++;
+        } else {
+            $product->counter = 1;
+            $countedHistory[$product->id] = $product;
+        }
+
+        $countedHistory[] = $product;
+        Session::put('countedHistory', $countedHistory);
+
         return view('product.show', ['product' => $product]);
     }
 
@@ -123,6 +153,12 @@ class ProductController extends Controller
     {
         Product::destroy([$id]);
 
+        return back();
+    }
+
+    public function forgetLastProduct()
+    {
+        Session::forget('lastProduct');
         return back();
     }
 }

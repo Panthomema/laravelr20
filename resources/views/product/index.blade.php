@@ -8,6 +8,13 @@
 
             <a href="/products/create" class="btn btn-primary">Crear nuevo</a>
             <br>
+            @if(Session::has('lastProduct'))
+                Último producto visitado: {{ Session::get('lastProduct')->name }}
+                <br>
+                <a href="/products/forgetLastProduct" class="btn btn-primary">Olvidar</a>
+            @else
+                Todavía no has visitado ninguno
+            @endif
             <br>
 
             <table class="table table-striped">
@@ -35,6 +42,26 @@
             </tr>
             @endforeach
             </table>
+
+            <hr>
+
+            <h3>Historial de productos visitados</h3>
+            @if(Session::has('history'))
+                @foreach(Session::get('history') as $product)
+                    <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a></li>
+                @endforeach
+            @else
+                Aún no se ha visitado ninguno.
+            @endif
+
+            <h3>Historial de productos visitados(veces)</h3>
+            @if(Session::has('countedHistory'))
+                @foreach(Session::get('countedHistory') as $product)
+                    <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a></li>
+                @endforeach
+            @else
+                Aún no se ha visitado ninguno.
+            @endif
         </div>
     </div>
 </div>

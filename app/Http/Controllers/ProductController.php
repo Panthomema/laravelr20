@@ -109,7 +109,7 @@ class ProductController extends Controller
 
 
         // Session::put('lastProduct', $product);
-        return $product;
+        return $product; //automaticamente json, status 200
     }
 
     /**

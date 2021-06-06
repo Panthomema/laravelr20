@@ -57,9 +57,16 @@
 
             <h3>Historial de productos visitados(veces)</h3>
             @if(Session::has('countedHistory'))
+                <table class="table table-striped">
                 @foreach(Session::get('countedHistory') as $product)
-                    <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a> ( {{ $product->counter }})</li>
+                <tr>
+                    <td><a href="/products/{{ $product->id }}">{{ $product->name }}</a> ( {{ $product->counter }})</td>
+                    <td><a href="/products/up/ {{ $product->id }}" class="btn btn-primary">+</a></td>
+                    <td><a href="/products/down/ {{ $product->id }}" class="btn btn-primary">-</a></td>
+                    <td><a href="/products/remove/ {{ $product->id }}" class="btn btn-primary">X</a></td>
+                </tr>
                 @endforeach
+                </table>
             @else
                 Aún no se ha visitado ninguno.
             @endif

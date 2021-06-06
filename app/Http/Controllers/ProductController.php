@@ -81,24 +81,10 @@ class ProductController extends Controller
         Session::put('history', $history);
         
         // Lista de productos con contador: 'countedHistory'..........................................
-        if (Session::has('countedHistory')) {
-            $countedHistory = Session::get('countedHistory');
-        } else {
-            $countedHistory = array();
-        }
+        $this->addToHistory($product);
+
+
         
-        if (isset($countedHistory[$product->id])) {
-            $countedHistory[$product->id]->counter++;
-        } else {
-            $product->counter = 1;
-            $countedHistory[$product->id] = $product;
-        }
-
-
-        // $product->counter = 1;
-        // $product->counter++;
-        // $countedHistory[] = $product;
-        Session::put('countedHistory', $countedHistory);
 
         return view('product.show', ['product' => $product]);
     }
@@ -162,10 +148,83 @@ class ProductController extends Controller
     }
 
 
-   public function forgetLastProduct()
+    public function forgetLastProduct()
     {
         // Session::flush();
         Session::forget('lastProduct');
+        return back();
+    }
+
+    public function addToHistory($product)
+    {
+        if (Session::has('countedHistory')) {
+            $countedHistory = Session::get('countedHistory');
+        } else {
+            $countedHistory = array();
+        }
+        
+        if (isset($countedHistory[$product->id])) {
+            $countedHistory[$product->id]->counter++;
+        } else {
+            $product->counter = 1;
+            $countedHistory[$product->id] = $product;
+        }
+
+        // $product->counter = 1;
+        // $product->counter++;
+        // $countedHistory[] = $product;
+        Session::put('countedHistory', $countedHistory);
+    }
+
+    public function down($product)
+    {   
+        if (Session::has('countedHistory')) {
+            $countedHistory = Session::get('countedHistory');
+        } else {
+            $countedHistory = array();
+        }
+        
+        if (isset($countedHistory[$product->id])) {
+            if ($countedHistory[$product->id]->counter > 1) {
+                $countedHistory[$product->id]->counter--;
+            } else {
+                unset($countedHistory[$product->id]);
+            }
+        }
+
+        Session::put('countedHistory', $countedHistory);
+        return back();
+    }
+
+    public function up($product)
+    {  
+        if (Session::has('countedHistory')) {
+            $countedHistory = Session::get('countedHistory');
+        } else {
+            $countedHistory = array();
+        }
+        
+        if (isset($countedHistory[$product->id])) {
+            $countedHistory[$product->id]->counter++;
+        }
+
+        Session::put('countedHistory', $countedHistory);
+        return back();
+    }
+
+    public function remove($product)
+    {
+        if (Session::has('countedHistory')) {
+            $countedHistory = Session::get('countedHIstory');
+        } else {
+            $countedHistory = array();
+        }
+
+        if (isset($countedHistory [$product->id])) {
+            unset($countedHistory[$product->id]);
+        }
+
+        Session::put('countedHistory', $countedHistory);
         return back();
     }
 }

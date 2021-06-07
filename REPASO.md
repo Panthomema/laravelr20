@@ -119,3 +119,26 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
      + Aumenta el contador
      - Disminuye el contador (si llega a 0 se debe borrar )
      X Eliminar un elemento cel array hisotorial2 (con unset($id))
+
+      Todos estos:
+        - No generan vista
+        - Vuelven al index:
+            return back();
+            return redirect('/products');
+
+# REPASO 07
+
+- Abrir postman. Todo se prueba aquí. Nos olvidamos del navegador
+- Creamos las rutas en api.php, no en web.php
+- Creamos el controlador de API: php artisan make.controller -r Api/ProductController
+- Creamos un folder en postman. Ahí guardaremos todas las posibles request para probar nuestra API:
+  - index: /api/products
+  - show: /api/products/{id} (OJO, en postman probar 200 y 404)
+  - store: /api/products (POST) OJO, en postman hay que probar 201 y 422 (validacion)
+  - update: /api/products/{id} (PUT) OJO, en postman hay que probar 404, 200 y 422 (validacion)
+  - destroy /api/products/{id} (DELETE) OJO, en postman hay que probar 404 y 200 (validacion)
+
+
+# PARA CASA
+- Acabar lo de sesions del día anterior
+- Hacer un controlador API

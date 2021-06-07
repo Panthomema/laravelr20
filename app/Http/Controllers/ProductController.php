@@ -87,6 +87,8 @@ class ProductController extends Controller
         
 
         return view('product.show', ['product' => $product]);
+        // Session::put('lastProduct', $product);
+        //return $product; //automaticamente json, status 200
     }
 
     /**

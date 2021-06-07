@@ -66,6 +66,9 @@ Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
 // Route::resource('/producttypes', ProductTypeController::class)->except(['index', 'show', 'destroy']);
 
 Route::get('/products/forgetLastProduct', [ProductController::class, 'forgetLastProduct']);
+Route::get('/products/{id}/up', [ProductController::class, 'up']);
+Route::get('/products/{id}/down', [ProductController::class, 'down']);
+Route::get('/products/{id}/remove', [ProductController::class, 'remove']);
 Route::resource('/products', ProductController::class);
 
 

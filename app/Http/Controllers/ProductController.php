@@ -21,6 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Product::class);
         $products = Product::with('producttype')->get();
         return view('product.index', ['products' => $products]);
     }
@@ -73,7 +74,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $this->authorize('view', $product);
         session(['lastProduct' => $product]);
+        // Session::put('lastProduct', $product);
         
         //historial...............................................
         //lista de productos visitados en orden: 'historial'
@@ -109,7 +112,7 @@ class ProductController extends Controller
 
 
         // Session::put('lastProduct', $product);
-        return $product; //automaticamente json, status 200
+        return "Ver producto: " . $product->name; //automaticamente json, status 200
     }
 
     /**
@@ -150,6 +153,54 @@ class ProductController extends Controller
     {
         // Session::flush();
         Session::forget('lastProduct');
+        return back();
+    }
+
+    public function up($id)
+    {
+        if (Session::has('historial2')) {
+            $historial2 = Session::get('historial2');
+        } else {
+            $historial2 = array();
+        }
+        
+        if (isset($historial2[$id])) {
+            $historial2[$id]->contador++;
+            Session::put('historial2', $historial2);
+        }
+        return back();
+    }
+
+    public function remove($id)
+    {
+        if (Session::has('historial2')) {
+            $historial2 = Session::get('historial2');
+        } else {
+            $historial2 = array();
+        }
+        
+        unset($historial2[$id]);
+        Session::put('historial2', $historial2);
+        // if (isset($historial2[$id])) {
+        // }
+        return back();
+    }
+
+    public function down($id)
+    {
+        if (Session::has('historial2')) {
+            $historial2 = Session::get('historial2');
+        } else {
+            $historial2 = array();
+        }
+        
+        if (isset($historial2[$id])) {
+            $historial2[$id]->contador--;
+            if ($historial2[$id]->contador <= 0) {
+                unset($historial2[$id]);
+            }
+            Session::put('historial2', $historial2);
+        }
         return back();
     }
 }

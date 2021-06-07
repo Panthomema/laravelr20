@@ -107,6 +107,7 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
 
   - Sesiones
   - Políticas
+  - Relaciones y lazy/eager loading
   - API. 
     - Rutas específicas
     - CRUD de Product en API probado con Postman
@@ -142,3 +143,13 @@ https://www.itsolutionstuff.com/post/laravel-8-install-bootstrap-example-tutoria
 # PARA CASA
 - Acabar lo de sesions del día anterior
 - Hacer un controlador API
+
+
+# REPASO 08
+- Revisar array en sesión: +/-/remove
+- Eager/Lazy loading.
+- Politicas en web
+  - OJO en API necesita autenticar no por sesión sino por JWT
+  - 1º Crear política "php artisan make:policy ProductPolicy --model=Product"
+  - 2º Registrar política en AuthServiceProvider
+  - 3º Definir las reglas que quiero usar. Su lógica.

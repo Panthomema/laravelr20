@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/products', ProductController::class)->except(['create', 'edit']);
+Route::resource('/producttypes', ProductTypeController::class)->except(['create', 'edit']);

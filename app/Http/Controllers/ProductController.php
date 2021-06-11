@@ -20,6 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Product::class);
         $products = Product::all();
         return view('product.index', ['products' => $products]);
     }
@@ -64,8 +65,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        
         $product = Product::find($id);
 
+        $this->authorize('view', $product);
         // Último producto visitado (metido en sesión)
         session(['lastProduct' => $product]);
         //Session::put('lastProduct', $product);
@@ -87,7 +90,6 @@ class ProductController extends Controller
         
 
         return view('product.show', ['product' => $product]);
-        // Session::put('lastProduct', $product);
         //return $product; //automaticamente json, status 200
     }
 
@@ -142,7 +144,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy($id)
     {
         Product::destroy([$id]);
 
@@ -178,19 +180,19 @@ class ProductController extends Controller
         Session::put('countedHistory', $countedHistory);
     }
 
-    public function down($product)
+    public function down($id)
     {   
         if (Session::has('countedHistory')) {
             $countedHistory = Session::get('countedHistory');
         } else {
             $countedHistory = array();
         }
-        
-        if (isset($countedHistory[$product->id])) {
-            if ($countedHistory[$product->id]->counter > 1) {
-                $countedHistory[$product->id]->counter--;
+
+        if (isset($countedHistory[$id])) {
+            if ($countedHistory[$id]->counter > 1) {
+                $countedHistory[$id]->counter--;
             } else {
-                unset($countedHistory[$product->id]);
+                unset($countedHistory[$id]);
             }
         }
 
@@ -198,7 +200,7 @@ class ProductController extends Controller
         return back();
     }
 
-    public function up($product)
+    public function up($id)
     {  
         if (Session::has('countedHistory')) {
             $countedHistory = Session::get('countedHistory');
@@ -206,15 +208,15 @@ class ProductController extends Controller
             $countedHistory = array();
         }
         
-        if (isset($countedHistory[$product->id])) {
-            $countedHistory[$product->id]->counter++;
+        if (isset($countedHistory[$id])) {
+            $countedHistory[$id]->counter++;
         }
 
         Session::put('countedHistory', $countedHistory);
         return back();
     }
 
-    public function remove($product)
+    public function remove($id)
     {
         if (Session::has('countedHistory')) {
             $countedHistory = Session::get('countedHIstory');
@@ -222,9 +224,7 @@ class ProductController extends Controller
             $countedHistory = array();
         }
 
-        if (isset($countedHistory [$product->id])) {
-            unset($countedHistory[$product->id]);
-        }
+        unset($countedHistory[$id]);
 
         Session::put('countedHistory', $countedHistory);
         return back();

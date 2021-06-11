@@ -73,9 +73,9 @@ Route::delete('/producttypes/{id}', [ProductTypeController::class, 'destroy']);
 //Rutas de Product (resource)
 //Métodos sesiones
 Route::get('/products/forgetLastProduct', [ProductController::class, 'forgetLastProduct']);
-Route::get('/products/up/{id}', [ProductController::class, 'up']);
-Route::get('/products/down{id}', [ProductController::class, 'down']);
-Route::get('/products/remove{id}', [ProductController::class, 'remove']);
+Route::get('/products/{id}/up', [ProductController::class, 'up']);
+Route::get('/products/{id}/down', [ProductController::class, 'down']);
+Route::get('/products/{id}/remove', [ProductController::class, 'remove']);
 Route::resource('/products', ProductController::class);
 
 

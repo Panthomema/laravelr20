@@ -61,9 +61,9 @@
                 @foreach(Session::get('countedHistory') as $product)
                 <tr>
                     <td><a href="/products/{{ $product->id }}">{{ $product->name }}</a> ( {{ $product->counter }})</td>
-                    <td><a href="/products/up/ {{ $product->id }}" class="btn btn-primary">+</a></td>
-                    <td><a href="/products/down/ {{ $product->id }}" class="btn btn-primary">-</a></td>
-                    <td><a href="/products/remove/ {{ $product->id }}" class="btn btn-primary">X</a></td>
+                    <td><a href="/products/{{ $product->id }}/up" class="btn btn-primary">+</a></td>
+                    <td><a href="/products/{{ $product->id }}/down" class="btn btn-primary">-</a></td>
+                    <td><a href="/products/{{ $product->id }}/remove" class="btn btn-danger">X</a></td>
                 </tr>
                 @endforeach
                 </table>

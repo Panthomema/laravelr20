@@ -27,7 +27,9 @@
                 <td>{{ $product->product_type->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>
-                    <a class="btn btn-primary" href="/products/{{$product->id}}">Ver</a>
+                    @can('view', $product)
+                    <a class="btn btn-primary" href="/products/{{$product->id}}">Ver</a>            
+                    @endcan
                 </td>
 
                 <td>
@@ -44,6 +46,7 @@
             @endforeach
             </table>
 
+<<<<<<< HEAD
             <hr>
 
             <h3>Historial de productos visitados</h3>
@@ -71,6 +74,37 @@
                 Aún no se ha visitado ninguno.
             @endif
         </div>
+=======
+      <h3>Historial de productos visitados</h3>
+      @if(Session::has('historial'))
+        @foreach(Session::get('historial') as $key => $product)
+        <li>
+          <a href="/products/{{$product->id}}">{{$product->name}}</a>
+          -
+          <a href="/products/{{$key}}/removeHistorial">Borrar {{$key}}</a>
+      
+        </li>
+        @endforeach
+      @else
+          Aún no hay ninguno en la lista
+      @endif
+
+      <h3>Historial de productos visitados con contador</h3>
+      @if(Session::has('historial2'))
+        <table class="table table-striped">          
+          @foreach(Session::get('historial2') as $product)
+          <tr>
+          <td><a href="/products/{{$product->id}}">{{$product->name}}</a> ({{$product->contador}})</td>
+          <td><a href="/products/{{$product->id}}/up" class="btn btn-primary btn-xs">+</a></td>
+          <td><a href="/products/{{$product->id}}/down" class="btn btn-primary btn-xs">-</a></td>
+          <td><a href="/products/{{$product->id}}111/remove" class="btn btn-danger btn-xs">x</a></td>
+          </tr>
+          @endforeach
+        </table>
+      @else
+          Aún no hay ninguno en la lista
+      @endif
+>>>>>>> 8b8d03b8375e49d0e0337905de27359788f325b3
     </div>
 </div>
 @endsection

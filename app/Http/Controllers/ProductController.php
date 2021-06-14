@@ -22,6 +22,7 @@ class ProductController extends Controller
     {
         $this->authorize('viewAny', Product::class);
         $products = Product::all();
+        //$products = Product::with('producttype')->get();****
         return view('product.index', ['products' => $products]);
     }
 
@@ -86,11 +87,8 @@ class ProductController extends Controller
         // Lista de productos con contador: 'countedHistory'..........................................
         $this->addToHistory($product);
 
-
-        
-
         return view('product.show', ['product' => $product]);
-        //return $product; //automaticamente json, status 200
+        //return "Ver producto: " . $product->name; //automaticamente json, status 200
     }
 
     /**
@@ -229,4 +227,5 @@ class ProductController extends Controller
         Session::put('countedHistory', $countedHistory);
         return back();
     }
+
 }

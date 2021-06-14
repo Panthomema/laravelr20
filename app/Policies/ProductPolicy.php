@@ -18,7 +18,11 @@ class ProductPolicy
      */
     public function viewAny(User $user)
     {
+<<<<<<< HEAD
         return $user->name == 'Jonander';
+=======
+        return $user->name == 'pepe';
+>>>>>>> 8b8d03b8375e49d0e0337905de27359788f325b3
         return true;
     }
 
@@ -31,8 +35,13 @@ class ProductPolicy
      */
     public function view(User $user, Product $product)
     {
+<<<<<<< HEAD
         return $product->id % 2 == 0;
         //
+=======
+        return $product->id % 2 == 1;
+        // return $product->user_id == $user->id;
+>>>>>>> 8b8d03b8375e49d0e0337905de27359788f325b3
     }
 
     /**
@@ -43,7 +52,12 @@ class ProductPolicy
      */
     public function create(User $user)
     {
+<<<<<<< HEAD
         //
+=======
+        return $user->id == 1 ||  $user->id == 2;
+        return $user->role_id == 2;
+>>>>>>> 8b8d03b8375e49d0e0337905de27359788f325b3
     }
 
     /**
